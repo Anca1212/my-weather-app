@@ -17,7 +17,7 @@ const options = {
   const GEO_API_URL = "https://wft-geo-db.p.rapidapi.com/v1/geo";
   const loadOptions = (inputValue) => {
     return   fetch(
-      `${GEO_API_URL}/cities?minPopulation=1000000&namePrefix=${inputValue}`,
+      `${GEO_API_URL}/cities?minPopulation=10000&namePrefix=${inputValue}`,
       options
     )
       .then((response) => response.json())
@@ -47,7 +47,9 @@ const options = {
       value={search}
       onChange={handleOnChange}
       loadOptions={loadOptions}
+     
     />
+    
   );
 };
 

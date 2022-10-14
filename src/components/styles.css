@@ -2,12 +2,13 @@
 
 .main{
     width: 700px;
-    border-radius: 15px;
+    border-radius: 30px;
     background-color: #01579b;
+    align-items: center;
 }
 
 .header{
-    background-color: #424242;
+    background-color: #a59292;
     color: whitesmoke;
     padding: 10px;
     font-size: 28px;
