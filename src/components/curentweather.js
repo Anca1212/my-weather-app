@@ -1,12 +1,31 @@
 import React from "react";
 import "./curentweather.css";
-
+import Ploaie from "./ploaie"
 const CurrentWeather = ({ data }) => {
+
+  const ploaie=()=>{
+    console.log("Dateleeee",data);
+    // data.list.slice(0, 7);
+    // console.log(data.list[nr].main.temp);
+    let z =false
+    if (data.weather[0].description=="light rain")
+    z=true
+    if (data.weather[0].description==" rain")
+    z=true
+    console.log(z)
+    if (z==true)
+         var ms="Zi cu ploaie"
+    return (
+      <div>{ms}</div>
+    );
+    }
+
 
 
   return (
     <div className="weather">
       <div className="top">
+      <Ploaie ploaie={ploaie()} />
         <div>
           <p className="city">{data.city}</p>
           <p className="weather-description">{data.weather[0].description}</p>

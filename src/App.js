@@ -3,6 +3,10 @@ import Search from "./components/search";
 import CurrentWeather from "./components/curentweather";
 import "./App.css";
 import Forecast from './components/forecast';
+import Heading from './components/heding';
+import Test from './components/dropdown';
+
+
 
 
 function App() {
@@ -16,6 +20,8 @@ function App() {
   const [inputText, setText] = useState('hello'); 
 
  
+ 
+
   
   const x = (value) => {
     // const value = "London"
@@ -30,15 +36,17 @@ function App() {
     })
     .catch(console.log);
 };
-var y=x("London");
+// var y=x("London");
 
   const handleOnSearchChange = (searchData) => {
     const value = searchData.value.split(" ");
     const currentWeatherFetch = fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=c20e15014efa3850950b9be498d49722`
+      `https://api.openweathermap.org/data/2.5/weather?q=${value}&appid=c59224f0db13e12cfc8682e800e50374
+`
     );
     const forecastFetch = fetch(
-      `https://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=c20e15014efa3850950b9be498d49722`
+      `https://api.openweathermap.org/data/2.5/forecast?q=${value}&appid=c59224f0db13e12cfc8682e800e50374
+      `
     );
     
     Promise.all([currentWeatherFetch, forecastFetch])
@@ -48,28 +56,39 @@ var y=x("London");
 
         setCurrentWeather({ city: searchData.label, ...weatherResponse });
         setForecast({ city: searchData.label, ...forcastResponse });
+
+        console.log("Forcast response", forcastResponse.list);
+
+
+        for (let step = 0; step < 7; step++) {        
+
+        if (forcastResponse.list[step].main.temp-273 >10){
+          console.log("temp mai mare!!!!!")
+          console.log(forcastResponse.list[step].main.temp-273)
+                  }}
+
+                
+                
       })
       .catch(console.log);
+      
   };
+
+
+
   return (
     <div className="container">
-    
-    <Search onSearchChange={handleOnSearchChange} />
-    
-    
-    {/* <div className='test'>
-    <button onclick="< onSearchChange={x}/>" >Click me</button> */}
-
-      
+      {/* <Heading oras="London"/> */}
+      <Search onSearchChange={handleOnSearchChange} />
       {currentWeather && <CurrentWeather data={currentWeather} />}
-    {forecast && <Forecast data={forecast} />}
-     </div> 
-    //  </div>
-  )
- 
+      {forecast && <Forecast data={forecast} />}
+      <div>
+     </div>
+    </div>
+  );
 }
 
-
-
-
 export default App;
+
+
+
